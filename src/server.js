@@ -10,6 +10,8 @@ const axios = require('axios');
 const { Web3 } = require('web3');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
+
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -38,7 +40,7 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+app.use(cors());
 
 
 const web3 = new Web3(`http://localhost:8545/`)
